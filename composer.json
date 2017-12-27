@@ -1,0 +1,27 @@
+{
+  "name": "timersys/geo-blocker",
+  "description": "WordPress plugin to restrict access to the site by geolocation that works with GeotargetingWP API",
+  "homepage": "https://geotargetingwp.com",
+  "keywords": [
+    "wordpress","geo blocker","restrict by country","geolocation","plugin"
+  ],
+  "license": "GPL-2.0+",
+  "authors": [
+    {
+      "name":"Damian Logghe",
+      "email":"damian@timersys.com",
+      "homepage":"https://timersys.com/"
+    }
+  ],
+  "support"    : {
+    "issues": "https://github.com/timersys/geo-blocker/issues",
+    "source": "https://github.com/timersys/geo-blocker"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "type": "wordpress-plugin",
+  "require": {
+    "timersys/geot-functions": "dev-master",
+    "mobiledetect/mobiledetectlib": "^2.8"
+  }
+}
