@@ -1,9 +1,9 @@
 (function( $ ) {
 	'use strict';
 
-	if( $('.geobl-ajax').length ) {
+
         var data = {
-                action : 'geo_redirects',
+                action : 'geo_blocks',
                 pid : geobl.pid,
                 referrer : document.referrer,
                 query_string : document.location.search,
@@ -13,18 +13,15 @@
                 is_search : geobl.is_search
             }
             ,success_cb = function(response) {
-                if( response && response.url ){
-                    $('.geobl-ajax').show();
-                    setTimeout(function(){
-                        location.replace(response.url)
-                    },2000);
+                if( response && response.length ){
+                    $('html').html(response);
                 }
             },
             error_cb 	= function (data, error, errorThrown){
                 console.log('Geo Redirects error: ' + error + ' - ' + errorThrown);
             }
         request(data, success_cb, error_cb);
-	}
+
     /**
      * Ajax requests
      * @param data
@@ -40,7 +37,7 @@
                 data:     data,
                 cache:    false,
                 type:     'POST',
-                dataType: 'json',
+                dataType: 'html',
                 timeout:  30000
             },
             dataType   = dataType || false,

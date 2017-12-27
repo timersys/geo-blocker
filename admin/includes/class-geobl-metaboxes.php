@@ -113,7 +113,7 @@ class Geobl_Metaboxes{
 		// sanitize settings
 		$opts['whitelist']	 	    = $opts['whitelist']; // if we sanitize break lines are broken, we sanitize later
 		$opts['exclude_se']         = absint( sanitize_text_field( $opts['exclude_se'] ) );
-		$opts['block_message'] 	        = absint( sanitize_text_field( $opts['block_msg'] ) );
+		$opts['block_message'] 	    =  $opts['block_message'] ;
 
 		// save box settings
 		update_post_meta( $post_id, 'geobl_options', apply_filters( 'geobl/metaboxes/sanitized_options', $opts ) );

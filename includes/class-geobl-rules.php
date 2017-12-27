@@ -88,7 +88,7 @@ class Geobl_Rules {
 	*
 	* @since 1.0.0
 	*/
-	public static function do_redirection( $rules = '' ) {
+	public static function do_block( $rules = '' ) {
 		if ( empty( $rules ) ) {
 			return false;
 		}

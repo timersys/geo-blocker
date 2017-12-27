@@ -244,10 +244,10 @@ class Geobl {
 		$this->public = new Geobl_Public();
 		$action_hook = defined('WP_CACHE') ? 'init' : 'wp';
 		if( ! is_admin() && ! $this->is_backend() && ! defined('DOING_AJAX') && ! defined('DOING_CRON') )
-			add_action( $action_hook, array( $this->public, 'handle_redirects' ) );
-		add_action( 'wp_enqueue_scripts', array( $this->public, 'enqueue_scripts' ) );
-		add_action( 'wp_ajax_nopriv_geo_redirects', array( $this->public, 'handle_ajax_redirects' ),1 );
-		add_action( 'wp_ajax_geo_redirects', array( $this->public, 'handle_ajax_redirects' ),1 );
+			add_action( $action_hook, array( $this->public, 'handle_blockers' ) );
+
+		add_action( 'wp_ajax_nopriv_geo_blocks', array( $this->public, 'handle_ajax_blockers' ),1 );
+		add_action( 'wp_ajax_geo_blocks', array( $this->public, 'handle_ajax_blockers' ),1 );
 	}
 
 	/**
