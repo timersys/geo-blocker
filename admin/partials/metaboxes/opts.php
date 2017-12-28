@@ -20,7 +20,7 @@ if ( !defined( 'ABSPATH' ) ) exit;?>
                 <option value="0" <?php selected($opts['exclude_se'], '0'); ?> > <?php _e( 'No', 'geobl' ); ?></option>
                 <option value="1" <?php selected($opts['exclude_se'], '1'); ?> > <?php _e( 'Yes', 'geobl' ); ?></option>
 			</select>
-            <p class="help"><?php _e( 'Exclude bots and crawlers from being redirected', 'geobl' ); ?></p>
+            <p class="help"><?php _e( 'Exclude bots and crawlers from being blocked', 'geobl' ); ?></p>
 		</td>
 	</tr>
 
@@ -28,7 +28,7 @@ if ( !defined( 'ABSPATH' ) ) exit;?>
 		<th><label for="geobl_trigger"><?php _e( 'IP Whitelist', 'geobl' ); ?></label></th>
 		<td>
 			<textarea class="widefat" name="geobl[whitelist]"><?php echo esc_attr($opts['whitelist']); ?></textarea>
-            <p class="help"><?php _e( 'Exclude the following IPs from being redirected. Enter one per line', 'geobl' ); ?></p>
+            <p class="help"><?php _e( 'Exclude the following IPs from being blocked. Enter one per line', 'geobl' ); ?></p>
 		</td>
 	</tr>
 	<?php do_action( 'geobl/metaboxes/after_options', $opts );?>

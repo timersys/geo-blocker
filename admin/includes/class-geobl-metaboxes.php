@@ -57,7 +57,7 @@ class Geobl_Metaboxes{
 	public function add_meta_boxes() {
 		add_meta_box(
 			'geobl-rules',
-			 __( 'Blocker Rules', 'geobl' ),
+			 __( 'Block Rules', 'geobl' ),
 			array( $this, 'geobl_rules' ),
 			'geobl_cpt',
 			'normal',
@@ -65,7 +65,7 @@ class Geobl_Metaboxes{
 		);
 		add_meta_box(
 			'geobl-opts',
-			 __( 'Blocker Options', 'geobl' ),
+			 __( 'Block Options', 'geobl' ),
 			array( $this, 'geobl_opts' ),
 			'geobl_cpt',
 			'normal',

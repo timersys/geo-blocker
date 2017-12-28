@@ -28,8 +28,8 @@ define( 'GEOBL_PLUGIN_FILE' , __FILE__);
 define( 'GEOBL_DIR', dirname(__FILE__));
 define( 'GEOBL_URL', plugin_dir_url(__FILE__));
 define( 'GEOBL_PLUGIN_HOOK' , basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ) );
-if( !defined('GEOBLOOT_PLUGIN_FILE'))
-	define( 'GEOBLOOT_PLUGIN_FILE', GEOBL_PLUGIN_FILE );
+if( !defined('GEOTROOT_PLUGIN_FILE'))
+	define( 'GEOTROOT_PLUGIN_FILE', GEOBL_PLUGIN_FILE );
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-geobl-activator.php

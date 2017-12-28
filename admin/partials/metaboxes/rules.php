@@ -99,8 +99,7 @@ do_action( 'geobl/metaboxes/before_rules', $post );
                 	<a class="button rules-add-group" href="#"><?php _e("Add rule group (+ OR)", 'geobl' ); ?></a>
 
                 <?php endif; ?>
-				<p style="margin-top: 30px">* <?= __('Blocker rules marked with an asterisk won\'t work if you are using page cache plugin unless you enable ajax mode')?></p>
-				<p> <?= sprintf(__('Learn more about Geo Blocker and compatible cache plugins <a href="%s" target="_blank">here</a>','geobl'), 'https://geotargetingwp.com/docs/geotargetingwp/cache');?> </p>
+				<p> <?= sprintf(__('Learn more about Geo Blocker and compatible cache plugins <a href="%s" target="_blank">here</a>','geobl'), 'https://geotargetingwp.com/docs/geo-blocker/cache');?> </p>
 			</div>
 		</td>
 	</tr>
