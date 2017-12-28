@@ -9,7 +9,7 @@
  * Plugin Name:       Geo Blocker
  * Plugin URI:        https://geotargetingwp/
  * Description:       Geo Blocker let you block access to your site based on geolocation
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            Damian Logghe
  * Author URI:        https://timersys.com
  * License:           GPL-2.0+
@@ -23,7 +23,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-define( 'GEOBL_VERSION', '1.2.0.1');
+define( 'GEOBL_VERSION', '1.0.1');
 define( 'GEOBL_PLUGIN_FILE' , __FILE__);
 define( 'GEOBL_DIR', dirname(__FILE__));
 define( 'GEOBL_URL', plugin_dir_url(__FILE__));
