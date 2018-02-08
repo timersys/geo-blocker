@@ -47,8 +47,10 @@ class Geobl_Public {
 					continue;
 				$rules = !empty($r->geobl_rules) ? unserialize($r->geobl_rules) : array();
 				$do_block = Geobl_Rules::do_block( $rules );
-				if ( $do_block )
-					$this->perform_block($r);
+				if ( $do_block ) {
+					$this->perform_block( $r );
+					break;
+				}
 			}
 		}
 	}
