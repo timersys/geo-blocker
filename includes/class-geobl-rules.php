@@ -444,24 +444,26 @@ class Geobl_Rules {
 	 *
 	 * @return boolean true if match
 	 */
-	public static function rule_match_custom_url( $rule ) {
+    public static function rule_match_custom_url( $rule ) {
 
-		$current_url = \GeotFunctions\get_current_url();
-		$wide_search = strpos($rule['value'],'*') !== false ? true : false;
+        $current_url = \GeotFunctions\get_current_url();
 
-		if( $wide_search ) {
-			if( trim( str_replace($current_url,'', $rule['value'] ),'/') == '*' ) {
-				return ( $rule['operator'] == "==" );
-			}
-			return ! ( $rule['operator'] == "==" );
-		}
+        $wide_search = strpos($rule['value'],'*') !== false ? true : false;
 
-		if( $rule['operator'] == "==" )
-			return ($current_url == $rule['value']);
+        if( $wide_search ) {
+            if( strpos( $current_url, trim($rule['value'],'*') ) === 0 ) {
+                return ( $rule['operator'] == "==" );
+            }
+            return ! ( $rule['operator'] == "==" );
+        }
 
-		return ! ($current_url == $rule['value']);
+        if( $rule['operator'] == "==" )
+            return ($current_url == $rule['value']);
 
-	}
+        return ! ($current_url == $rule['value']);
+
+    }
+
 	/**
 	 * Check for crawlers / bots
 	 *
