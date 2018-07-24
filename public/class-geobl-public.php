@@ -30,7 +30,7 @@ class Geobl_Public {
 		$this->blocks = $this->get_blocks();
 		$opts = geobl_settings();
 		if( ! empty( $opts['ajax_mode'] ) )
-			add_action( 'wp_enqueue_scripts', [ 'Geobl_Public',  'enqueue_scripts' ] );
+			add_action( 'wp_enqueue_scripts', [ $this,  'enqueue_scripts' ] );
 		else
 			$this->check_for_rules();
 	}
