@@ -309,6 +309,7 @@ class Geobl {
 			'labels'             => $labels,
 			'public'             => false,
 			'publicly_queryable' => true,
+			'exclude_from_search'=> true,
 			'show_ui'            => true,
 			'show_in_menu'       => 'geot-settings',
 			'query_var'          => true,
