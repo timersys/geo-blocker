@@ -7,10 +7,39 @@ if ( !defined( 'ABSPATH' ) ) exit;?>
 	<?php do_action( 'geobl/metaboxes/before_options', $opts );?>
 
 	<tr valign="top">
+		<th><label for="geobl_trigger"><?php _e( 'Template', 'geobl' ); ?></label></th>
+		<td>
+			<?php $located = Geobl_Helper::get_template_from_theme($post->ID); ?>
+			
+			<?php if( $located ) : ?>
+				<p class="help"><?php printf(__( 'Currently you have a template in <b>%s</b>.', 'geobl' ), '{current_theme}/geobl/geobl-template-'.$post->ID.'.php'); ?></p>
+				<p class="help">
+					<?php printf(__('<a href="%s" target="_blank">See the own template</a>','geobl'),wp_nonce_url(admin_url('admin-ajax.php?action=geo_template&id='.$post->ID),'nonce-template', 'wp-nonce' )); ?>
+				</p>
+			<?php else : ?>
+				<p class="help"><?php printf(__( 'If you want to build your own block template, you can put a file called <b>%s</b> in your current theme.', 'geobl' ), 'geobl/geobl-template-'.$post->ID.'.php'); ?></p>
+				<p class="help">
+					<?php printf(__('<a href="%s" target="_blank">See the default template</a>','geobl'), wp_nonce_url(admin_url('admin-ajax.php?action=geo_template&id='.$post->ID),'nonce-template', 'wp-nonce' )) ?>
+				</p>
+			<?php endif; ?>
+
+		</td>
+	</tr>
+
+	<tr valign="top">
 		<th><label for="geobl_trigger"><?php _e( 'Message', 'geobl' ); ?></label></th>
 		<td>
-			<textarea class="widefat" name="geobl[block_message]"><?php echo esc_attr($opts['block_message']); ?></textarea>
-			<p class="help"><?php _e( 'Display a message to users being blocked', 'geobl' ); ?></p>
+			<!--textarea class="widefat" name="geobl[block_message]"><?php //echo esc_attr($opts['block_message']); ?></textarea-->
+
+			<?php
+				$editor_id = 'block_message';
+				$settings = array( 'textarea_name' => 'geobl[block_message]', 'textarea_rows' => 5);
+				//$content = esc_attr($opts['block_message']);
+				$content = $opts['block_message'];
+
+				wp_editor( $content, $editor_id, $settings );
+			?>
+			<p class="help"><?php _e( 'Display a message to users being blocked.', 'geobl' ); ?></p>
 		</td>
 	</tr>
 	<tr valign="top">
