@@ -248,6 +248,8 @@ class Geobl {
 
 		add_action( 'wp_ajax_nopriv_geo_blocks', array( $this->public, 'handle_ajax_blockers' ),1 );
 		add_action( 'wp_ajax_geo_blocks', array( $this->public, 'handle_ajax_blockers' ),1 );
+
+		add_action( 'wp_ajax_geo_template', array( $this->public, 'view_template' ),1 );
 	}
 
 	/**

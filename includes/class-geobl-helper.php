@@ -475,7 +475,40 @@ class Geobl_Helper {
 
 
 		return $rules;
+	}
 
 
+
+
+	public static function include_template( $args = array() ) {
+
+		if ( ! empty( $args ) && is_array( $args ) ) {
+			extract( $args );
+		}
+
+		$located = Geobl_Helper::get_template_from_theme($id);
+
+		if ( ! $located )
+			$located = GEOBL_DIR. '/public/partials/geobl-template.php';
+		
+		// Allow 3rd party plugin filter template file from their plugin.
+		$located = apply_filters( 'geobl/include_template', $located, $args);
+
+		do_action( 'geobl/before_template', $located, $args );
+
+		include $located;
+
+		do_action( 'geobl/after_template', $located, $args );
+	}
+
+
+	public static function get_template_from_theme( $post_id ) {
+
+		$template_name = sprintf('geobl-template-%d.php',$post_id);
+		$template_path = apply_filters('geobl/theme_path','geobl/');
+
+		$located = locate_template(array(trailingslashit( $template_path ) . $template_name, $template_name) );
+
+		return apply_filters( 'geobl/get_template_from_theme', $located, $post_id );
 	}
 }
