@@ -80,6 +80,7 @@ class Geobl {
 	 * @var The Fbl plugin instance
 	 */
 	protected static $_instance = null;
+	public $settings;
 
 	/**
 	 * Main plugin_name Instance
@@ -162,6 +163,7 @@ class Geobl {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-geobl-helper.php';
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-geobl-admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-geobl-settings.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/includes/class-geobl-metaboxes.php';
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-geobl-public.php';
@@ -209,6 +211,7 @@ class Geobl {
 	private function define_admin_hooks() {
 
 		$this->admin = new Geobl_Admin( $this->get_plugin_name(), $this->get_version() );
+		$this->settings = new Geobl_Settings();
 		$metaboxes = new Geobl_Metaboxes( $this->get_plugin_name(), $this->get_version() );
 
 		Geobl_Rules::set_rules_fields();
@@ -218,10 +221,6 @@ class Geobl {
 		add_action( 'save_post_geobl_cpt', array( $metaboxes, 'save_meta_options' ) );
 
 		add_action( 'admin_enqueue_scripts', array( $this->admin, 'enqueue_scripts' ) );
-
-		// Settings
-		add_action( 'admin_menu' , [ $this->admin, 'add_settings_menu' ],8);
-		add_action( 'admin_init', [ $this->admin, 'save_settings' ] );
 
 		//AJAX Actions
 		add_action('wp_ajax_geobl/field_group/render_rules', array( 'Geobl_Helper', 'ajax_render_rules' ) );

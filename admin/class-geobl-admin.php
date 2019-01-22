@@ -79,38 +79,6 @@ class Geobl_Admin {
 		);
 	}
 
-	/**
-	 * Add menu for Settings page of the plugin
-	 * @since  1.0.3
-	 * @return  void
-	 */
-	public function add_settings_menu() {
-
-		add_submenu_page( 'geot-settings', 'Geo Blocker Settings', 'Geo Blocker Settings', apply_filters( 'geobl/settings_page_role', 'manage_options'), 'geobl-settings',array($this, 'settings_page') );
-	}
-
-	/**
-	 * Settings page for plugin
-	 * @since 1.0.3
-	 */
-	public function settings_page() {
-		$defaults = [
-			'ajax_mode'                 => '0',
-		];
-		$opts = wp_parse_args( geobl_settings(),  $defaults );
-		include  dirname( __FILE__ )  . '/partials/settings-page.php';
-	}
-	/**
-	 * Save Settings page
-	 * @since 1.0.3
-	 */
-	function save_settings(){
-		if (  isset( $_POST['geot_nonce'] ) && wp_verify_nonce( $_POST['geot_nonce'], 'geobl_save_settings' ) ) {
-			$settings = isset($_POST['geobl_settings']) ? esc_sql( $_POST['geobl_settings'] ) : '';
-
-			update_option( 'geobl_settings' ,  $settings);
-		}
-	}
 
 	/**
 	 * Register direct access link
