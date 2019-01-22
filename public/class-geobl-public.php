@@ -156,11 +156,12 @@ class Geobl_Public {
 	/**
 	 * Print placeholder in front end
 	 *
+	 * @param $id
 	 * @param $message
 	 */
 	public static function block_screen($id, $message){
 
-		$args = array('message' => $message, 'id' => $id );
+		$args = ['message' => $message, 'id' => $id ];
 		Geobl_Helper::include_template($args);
 	}
 

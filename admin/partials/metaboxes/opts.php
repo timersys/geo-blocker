@@ -12,14 +12,14 @@ if ( !defined( 'ABSPATH' ) ) exit;?>
 			<?php $located = Geobl_Helper::get_template_from_theme($post->ID); ?>
 			
 			<?php if( $located ) : ?>
-				<p class="help"><?php printf(__( 'Currently you have a template in <b>%s</b>.', 'geobl' ), '{current_theme}/geobl/geobl-template-'.$post->ID.'.php'); ?></p>
+				<p class="help"><?php printf(__( 'Currently you have a template in <b>%s</b>.', 'geobl' ), $located); ?></p>
 				<p class="help">
-					<?php printf(__('<a href="%s" target="_blank">See the own template</a>','geobl'),wp_nonce_url(admin_url('admin-ajax.php?action=geo_template&id='.$post->ID),'nonce-template', 'wp-nonce' )); ?>
+					<?php printf(__('<a href="%s" target="_blank">View your template</a>','geobl'),wp_nonce_url(admin_url('admin-ajax.php?action=geo_template&id='.$post->ID),'nonce-template', 'wp-nonce' )); ?>
 				</p>
 			<?php else : ?>
-				<p class="help"><?php printf(__( 'If you want to build your own block template, you can put a file called <b>%s</b> in your current theme.', 'geobl' ), 'geobl/geobl-template-'.$post->ID.'.php'); ?></p>
+				<p class="help"><?php printf(__( 'If you want to build your own block template, you need to place a file called <b>%s</b> in your current theme for overriding this template or a global file called <b>%s</b> to override all templates.', 'geobl' ), 'geobl/geobl-template-'.$post->ID.'.php','geobl/geobl-template.php'); ?></p>
 				<p class="help">
-					<?php printf(__('<a href="%s" target="_blank">See the default template</a>','geobl'), wp_nonce_url(admin_url('admin-ajax.php?action=geo_template&id='.$post->ID),'nonce-template', 'wp-nonce' )) ?>
+					<?php printf(__('<a href="%s" target="_blank">View the default template</a>','geobl'), wp_nonce_url(admin_url('admin-ajax.php?action=geo_template&id='.$post->ID),'nonce-template', 'wp-nonce' )) ?>
 				</p>
 			<?php endif; ?>
 
