@@ -264,7 +264,7 @@ class Geobl {
 
 
 	/**
-	 * Check if is a builder ( Elementor/Divi )
+	 * Check if is a builder ( Elementor/Divi/Gutemberg )
 	 * @return bool
 	 */
 	private function is_builder() {
@@ -275,6 +275,10 @@ class Geobl {
 
 		// is DIVI
 		if( isset( $_GET['et_fb'] ) && is_numeric( $_GET['et_fb'] ) )
+			return true;
+
+		// is Gutemberg
+		if( isset( $_GET['_locale'] ) && $_GET['_locale'] == 'user' )
 			return true;
 
 		return false;
