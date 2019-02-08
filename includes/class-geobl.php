@@ -242,8 +242,10 @@ class Geobl {
 
 		$this->public = new Geobl_Public();
 		$action_hook = defined('WP_CACHE') ? 'init' : 'wp';
-		if( ! is_admin() && ! $this->is_backend() && ! defined('DOING_AJAX') && ! defined('DOING_CRON') )
-			add_action( $action_hook, array( $this->public, 'handle_blockers' ) );
+
+		if( ! is_admin() && ! $this->is_backend() && ! $this->is_builder() &&
+			! defined('DOING_AJAX') && ! defined('DOING_CRON')
+		) add_action( $action_hook, array( $this->public, 'handle_blockers' ) );
 
 		add_action( 'wp_ajax_nopriv_geo_blocks', array( $this->public, 'handle_ajax_blockers' ),1 );
 		add_action( 'wp_ajax_geo_blocks', array( $this->public, 'handle_ajax_blockers' ),1 );
@@ -258,6 +260,28 @@ class Geobl {
 	private function is_backend(){
 		$ABSPATH_MY = str_replace(array('\\','/'), DIRECTORY_SEPARATOR, ABSPATH);
 		return ((in_array($ABSPATH_MY.'wp-login.php', get_included_files()) || in_array($ABSPATH_MY.'wp-register.php', get_included_files()) ) || $GLOBALS['pagenow'] === 'wp-login.php' || $_SERVER['PHP_SELF']== '/wp-login.php');
+	}
+
+
+	/**
+	 * Check if is a builder ( Elementor/Divi/Gutemberg )
+	 * @return bool
+	 */
+	private function is_builder() {
+
+		// is Elementor
+		if ( isset( $_GET['elementor-preview'] ) && is_numeric( $_GET['elementor-preview'] ) )
+			return true;
+
+		// is DIVI
+		if( isset( $_GET['et_fb'] ) && is_numeric( $_GET['et_fb'] ) )
+			return true;
+
+		// is Gutemberg
+		if( isset( $_GET['_locale'] ) && $_GET['_locale'] == 'user' )
+			return true;
+
+		return false;
 	}
 
 

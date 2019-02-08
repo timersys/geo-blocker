@@ -113,9 +113,6 @@ class Geobl_Public {
 	private function perform_block( $block ) {
 		$opts = maybe_unserialize($block->geobl_options);
 
-		update_option('ipollo1',print_r($block,true));
-		update_option('ipollo2',print_r($opts,true));
-
 		$opts['block_message'] = do_shortcode($opts['block_message']);
 		//last chance to abort
 		if( ! apply_filters('geobl/cancel_block', false, $opts, $block) ) {
