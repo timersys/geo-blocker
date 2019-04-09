@@ -2,8 +2,8 @@
 Contributors: timersys
 Donate link: https://timersys.com
 Tags: geo blocker, geo block country, restrict by country
-Tested up to: 5.0.2
-Stable tag: 1.1
+Tested up to: 5.1.1
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,6 +32,9 @@ Restrict access to your website based on geo location. Block entire countries, c
 
 
 == Changelog ==
+
+= 1.1.1 =
+* Core updates
 
 = 1.1 =
 * Added option to change template
