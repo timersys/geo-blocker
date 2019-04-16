@@ -128,12 +128,12 @@ class Geobl_Metaboxes{
 			$groups = array_values( $_POST['geobl_rules'] );
 			unset( $_POST['geobl_rules'] );
 
-			$output_groups = array();
+			$output_groups = [];
 
 			foreach($groups as $group_id => $group ) {
 				if( is_array($group) ) {
 
-					$output_geot = array();
+					$output_geot = [];
 					$group_wkey = array_values( $group );
 
 					foreach( $group_wkey as $item_key => $items ) {
