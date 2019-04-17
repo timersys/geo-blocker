@@ -58,7 +58,7 @@ class Geobl_Metaboxes{
 		add_meta_box(
 			'geobl-rules',
 			 __( 'Block Rules', 'geobl' ),
-			array( $this, 'geobl_rules' ),
+			[ $this, 'geobl_rules' ],
 			'geobl_cpt',
 			'normal',
 			'core'
@@ -66,7 +66,7 @@ class Geobl_Metaboxes{
 		add_meta_box(
 			'geobl-opts',
 			 __( 'Block Options', 'geobl' ),
-			array( $this, 'geobl_opts' ),
+			[ $this, 'geobl_opts' ],
 			'geobl_cpt',
 			'normal',
 			'core'
@@ -118,25 +118,39 @@ class Geobl_Metaboxes{
 		// save box settings
 		update_post_meta( $post_id, 'geobl_options', apply_filters( 'geobl/metaboxes/sanitized_options', $opts ) );
 
+
+		$keys_geot = apply_filters('geobl/metaboxes/keys_geot', ['country', 'country_region', 'city', 'city_region', 'state', 'zip']);
+
 		// Start with rules
-		if( isset($_POST['geobl_rules']) && is_array($_POST['geobl_rules']) )
-		{
+		if( isset($_POST['geobl_rules']) && is_array($_POST['geobl_rules']) ) {
+
 			// clean array keys
 			$groups = array_values( $_POST['geobl_rules'] );
 			unset( $_POST['geobl_rules'] );
 
-			foreach($groups as $group_id => $group )
-			{
-				if( is_array($group) )
-				{
-					// clean array keys
-					$groups_a[] = array_values( $group );
+			$output_groups = [];
 
+			foreach($groups as $group_id => $group ) {
+				if( is_array($group) ) {
+
+					$output_geot = [];
+					$group_wkey = array_values( $group );
+
+					foreach( $group_wkey as $item_key => $items ) {
+						if( in_array($items['param'], $keys_geot) )
+							$output_geot[] = $items;
+						else
+							$output_groups[$group_id][] = $items;
+					}
+
+					if( count($output_geot) > 0 ) {
+						foreach($output_geot as $item_geot)
+							$output_groups[$group_id][] = $item_geot;
+					}
 				}
 			}
 
-			update_post_meta( $post_id, 'geobl_rules', apply_filters( 'geobl/metaboxes/sanitized_rules', $groups_a ) );
-
+			update_post_meta( $post_id, 'geobl_rules', apply_filters( 'geobl/metaboxes/sanitized_rules', $output_groups ) );
 		}
 	}
 
