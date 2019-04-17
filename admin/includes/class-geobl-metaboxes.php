@@ -58,7 +58,7 @@ class Geobl_Metaboxes{
 		add_meta_box(
 			'geobl-rules',
 			 __( 'Block Rules', 'geobl' ),
-			array( $this, 'geobl_rules' ),
+			[ $this, 'geobl_rules' ],
 			'geobl_cpt',
 			'normal',
 			'core'
@@ -66,7 +66,7 @@ class Geobl_Metaboxes{
 		add_meta_box(
 			'geobl-opts',
 			 __( 'Block Options', 'geobl' ),
-			array( $this, 'geobl_opts' ),
+			[ $this, 'geobl_opts' ],
 			'geobl_cpt',
 			'normal',
 			'core'
@@ -119,7 +119,7 @@ class Geobl_Metaboxes{
 		update_post_meta( $post_id, 'geobl_options', apply_filters( 'geobl/metaboxes/sanitized_options', $opts ) );
 
 
-		$keys_geot = apply_filters('geobl/metaboxes/keys_geot', array('country', 'country_region', 'city', 'city_region', 'state', 'zip'));
+		$keys_geot = apply_filters('geobl/metaboxes/keys_geot', ['country', 'country_region', 'city', 'city_region', 'state', 'zip']);
 
 		// Start with rules
 		if( isset($_POST['geobl_rules']) && is_array($_POST['geobl_rules']) ) {
